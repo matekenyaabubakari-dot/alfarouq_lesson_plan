@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>My Lesson Plans - Alfarouq</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        color: #111827;
+    }
+
+    .container {
+        max-width: 1250px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .header {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .header h1 {
+        margin: 0 0 7px 0;
+        color: #111827;
+    }
+
+    .header p {
+        margin: 0;
+        color: #6b7280;
+    }
+
+    .top-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 11px 17px;
+        border-radius: 7px;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .btn-primary {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-dashboard {
+        background: #111827;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    .search-box {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+
+    .search-box input {
+        width: 100%;
+        padding: 13px;
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+        font-size: 15px;
+    }
+
+    .table-container {
+        background: white;
+        border-radius: 12px;
+        overflow-x: auto;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 900px;
+    }
+
+    th,
+    td {
+        padding: 14px;
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+    }
+
+    th {
+        background: #f1f5f9;
+        color: #374151;
+        font-size: 14px;
+    }
+
+    td {
+        font-size: 14px;
+    }
+
+    tr:hover {
+        background: #f9fafb;
+    }
+
+    .actions {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+    }
+
+    .action-btn {
+        display: inline-block;
+        padding: 7px 10px;
+        border-radius: 5px;
+        text-decoration: none;
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .view {
+        background: #2563eb;
+    }
+
+    .edit {
+        background: #16a34a;
+    }
+
+    .delete {
+        background: #dc2626;
+    }
+
+    .print {
+        background: #7c3aed;
+    }
+
+    .empty {
+        background: white;
+        text-align: center;
+        padding: 60px 20px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .empty h2 {
+        margin-bottom: 10px;
+    }
+
+    .empty p {
+        color: #6b7280;
+        margin-bottom: 25px;
+    }
+
+    .messages {
+        margin-bottom: 20px;
+    }
+
+    .message {
+        padding: 14px;
+        background: #dcfce7;
+        color: #166534;
+        border-radius: 7px;
+        margin-bottom: 8px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        color: #2563eb;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    @media (max-width: 700px) {
+
+        .container {
+            margin: 10px auto;
+            padding: 10px;
+        }
+
+        .header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .top-buttons {
+            width: 100%;
+        }
+
+        .top-buttons .btn {
+            flex: 1;
+            text-align: center;
+        }
+
+    }
+
+    @media print {
+
+        body {
+            background: white;
+        }
+
+        .top-buttons,
+        .search-box,
+        .actions,
+        .back,
+        .messages {
+            display: none !important;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            box-shadow: none;
+        }
+
+        .table-container {
+            box-shadow: none;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<!-- HEADER -->
+
+<div class="header">
+
+    <div>
+
+        <h1>
+            📚 My Lesson Plans
+        </h1>
+
+        <p>
+            Manage all your lesson plans from one place.
+        </p>
+
+    </div>
+
+
+    <div class="top-buttons">
+
+        <a
+            href="{% url 'home' %}"
+            class="btn btn-dashboard">
+
+            🏠 Dashboard
+
+        </a>
+
+
+        <a
+            href="{% url 'create_lesson_plan' %}"
+            class="btn btn-primary">
+
+            + Create Lesson Plan
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- MESSAGES -->
+
+{% if messages %}
+
+<div class="messages">
+
+    {% for message in messages %}
+
+    <div class="message">
+
+        {{ message }}
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+
+<!-- SEARCH -->
+
+{% if lesson_plans %}
+
+<div class="search-box">
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="🔍 Search by teacher, school, subject or class..."
+        onkeyup="searchLessons()">
+
+</div>
+
+
+<!-- TABLE -->
+
+<div class="table-container">
+
+    <table id="lessonTable">
+
+        <thead>
+
+            <tr>
+
+                <th>#</th>
+
+                <th>Teacher</th>
+
+                <th>School</th>
+
+                <th>Subject</th>
+
+                <th>Class</th>
+
+                <th>Date</th>
+
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+
+        <tbody>
+
+            {% for lesson in lesson_plans %}
+
+            <tr>
+
+                <td>
+                    {{ forloop.counter }}
+                </td>
+
+                <td>
+                    {{ lesson.teacher_name }}
+                </td>
+
+                <td>
+                    {{ lesson.school_name }}
+                </td>
+
+                <td>
+                    {{ lesson.subject }}
+                </td>
+
+                <td>
+                    {{ lesson.class_name }}
+                </td>
+
+                <td>
+                    {{ lesson.date }}
+                </td>
+
+
+                <td>
+
+                    <div class="actions">
+
+                        <!-- VIEW -->
+
+                        <a
+                            href="{% url 'lesson_plan_detail' lesson.pk %}"
+                            class="action-btn view">
+
+                            👁 View
+
+                        </a>
+
+
+                        <!-- EDIT -->
+
+                        <a
+                            href="{% url 'edit_lesson_plan' lesson.pk %}"
+                            class="action-btn edit">
+
+                            ✏ Edit
+
+                        </a>
+
+
+                        <!-- DELETE -->
+
+                        <a
+                            href="{% url 'delete_lesson_plan' lesson.pk %}"
+                            class="action-btn delete">
+
+                            🗑 Delete
+
+                        </a>
+
+
+                        <!-- PRINT -->
+
+                        <a
+                            href="{% url 'lesson_plan_detail' lesson.pk %}?print=1"
+                            class="action-btn print"
+                            onclick="setTimeout(function(){ window.print(); }, 500);">
+
+                            🖨 Print
+
+                        </a>
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+
+{% else %}
+
+
+<!-- EMPTY -->
+
+<div class="empty">
+
+    <h2>
+        📭 No Lesson Plans Yet
+    </h2>
+
+    <p>
+        You have not created any lesson plan yet.
+    </p>
+
+    <a
+        href="{% url 'create_lesson_plan' %}"
+        class="btn btn-primary">
+
+        + Create Your First Lesson Plan
+
+    </a>
+
+</div>
+
+
+{% endif %}
+
+
+<a
+    href="{% url 'home' %}"
+    class="back">
+
+    ← Back to Dashboard
+
+</a>
+```
+
+</div>
+
+<script>
+
+function searchLessons() {
+
+    let input =
+        document.getElementById("searchInput");
+
+    let filter =
+        input.value.toLowerCase();
+
+    let table =
+        document.getElementById("lessonTable");
+
+    let rows =
+        table.getElementsByTagName("tr");
+
+
+    for (let i = 1; i < rows.length; i++) {
+
+        let text =
+            rows[i].textContent.toLowerCase();
+
+        if (text.includes(filter)) {
+
+            rows[i].style.display = "";
+
+        } else {
+
+            rows[i].style.display = "none";
+
+        }
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

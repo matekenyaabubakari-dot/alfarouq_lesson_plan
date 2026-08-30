@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Lesson Plan Details</title>
+
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+
+    body {
+
+        margin: 0;
+
+        font-family: Arial, sans-serif;
+
+        background: #f4f6f9;
+
+        color: #111827;
+    }
+
+
+    .container {
+
+        max-width: 1000px;
+
+        margin: 40px auto;
+
+        padding: 20px;
+    }
+
+
+    .card {
+
+        background: white;
+
+        padding: 35px;
+
+        border-radius: 15px;
+
+        box-shadow:
+            0 4px 20px rgba(0,0,0,0.08);
+    }
+
+
+    .header {
+
+        border-bottom: 2px solid #e5e7eb;
+
+        padding-bottom: 20px;
+
+        margin-bottom: 30px;
+    }
+
+
+    .header h1 {
+
+        margin: 0 0 8px;
+
+        color: #2563eb;
+    }
+
+
+    .header p {
+
+        margin: 0;
+
+        color: #6b7280;
+    }
+
+
+    /* INFORMATION */
+
+    .field {
+
+        margin-bottom: 22px;
+    }
+
+
+    .field h3 {
+
+        margin-bottom: 7px;
+
+        color: #374151;
+
+        font-size: 16px;
+    }
+
+
+    .field p {
+
+        margin: 0;
+
+        padding: 14px;
+
+        background: #f3f4f6;
+
+        border-radius: 7px;
+
+        white-space: pre-line;
+    }
+
+
+    /* ATTENDANCE */
+
+    .attendance-section {
+
+        margin-top: 35px;
+
+        margin-bottom: 35px;
+    }
+
+
+    .attendance-title {
+
+        padding: 13px 16px;
+
+        background: #eff6ff;
+
+        border-left: 5px solid #2563eb;
+
+        color: #1e40af;
+
+        border-radius: 6px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .attendance-grid {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(4, 1fr);
+
+        gap: 15px;
+    }
+
+
+    .attendance-card {
+
+        padding: 22px 15px;
+
+        border-radius: 12px;
+
+        text-align: center;
+
+        border: 1px solid #e5e7eb;
+
+        background: #ffffff;
+    }
+
+
+    .attendance-card .number {
+
+        font-size: 32px;
+
+        font-weight: bold;
+
+        margin-bottom: 8px;
+    }
+
+
+    .attendance-card .label {
+
+        font-size: 14px;
+
+        color: #6b7280;
+
+        font-weight: bold;
+    }
+
+
+    .total-card {
+
+        border-top: 5px solid #2563eb;
+    }
+
+
+    .total-card .number {
+
+        color: #2563eb;
+    }
+
+
+    .present-card {
+
+        border-top: 5px solid #16a34a;
+    }
+
+
+    .present-card .number {
+
+        color: #16a34a;
+    }
+
+
+    .absent-card {
+
+        border-top: 5px solid #dc2626;
+    }
+
+
+    .absent-card .number {
+
+        color: #dc2626;
+    }
+
+
+    .percentage-card {
+
+        border-top: 5px solid #7c3aed;
+    }
+
+
+    .percentage-card .number {
+
+        color: #7c3aed;
+    }
+
+
+    /* PROGRESS BAR */
+
+    .progress-container {
+
+        margin-top: 25px;
+
+        background: #f3f4f6;
+
+        padding: 20px;
+
+        border-radius: 10px;
+    }
+
+
+    .progress-header {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        margin-bottom: 10px;
+
+        font-weight: bold;
+    }
+
+
+    .progress-bar {
+
+        width: 100%;
+
+        height: 18px;
+
+        background: #e5e7eb;
+
+        border-radius: 20px;
+
+        overflow: hidden;
+    }
+
+
+    .progress-fill {
+
+        height: 100%;
+
+        background: #16a34a;
+
+        border-radius: 20px;
+
+        transition: width 0.5s ease;
+    }
+
+
+    /* BUTTONS */
+
+    .buttons {
+
+        margin-top: 35px;
+
+        padding-top: 25px;
+
+        border-top: 1px solid #e5e7eb;
+
+        display: flex;
+
+        gap: 10px;
+
+        flex-wrap: wrap;
+    }
+
+
+    .btn {
+
+        display: inline-block;
+
+        padding: 12px 20px;
+
+        border-radius: 7px;
+
+        text-decoration: none;
+
+        color: white;
+
+        font-weight: bold;
+
+        font-size: 14px;
+
+        border: none;
+
+        cursor: pointer;
+    }
+
+
+    .btn-edit {
+
+        background: #2563eb;
+    }
+
+
+    .btn-delete {
+
+        background: #dc2626;
+    }
+
+
+    .btn-print {
+
+        background: #16a34a;
+    }
+
+
+    .btn-back {
+
+        background: #6b7280;
+    }
+
+
+    .btn-dashboard {
+
+        background: #111827;
+    }
+
+
+    .btn:hover {
+
+        opacity: 0.85;
+    }
+
+
+    /* PRINT */
+
+    @media print {
+
+        body {
+
+            background: white;
+        }
+
+
+        .container {
+
+            margin: 0;
+
+            max-width: 100%;
+
+            padding: 0;
+        }
+
+
+        .card {
+
+            box-shadow: none;
+
+            border-radius: 0;
+        }
+
+
+        .buttons {
+
+            display: none;
+        }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+        .attendance-grid {
+
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+    }
+
+
+    @media (max-width: 500px) {
+
+        .container {
+
+            margin: 10px auto;
+
+            padding: 10px;
+        }
+
+
+        .card {
+
+            padding: 20px;
+        }
+
+
+        .attendance-grid {
+
+            grid-template-columns: 1fr;
+        }
+
+
+        .buttons {
+
+            flex-direction: column;
+        }
+
+
+        .btn {
+
+            width: 100%;
+
+            text-align: center;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<div class="card">
+
+
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <h1>
+            📋 Lesson Plan Details
+        </h1>
+
+        <p>
+            View complete lesson plan information and student attendance.
+        </p>
+
+    </div>
+
+
+    <!-- BASIC INFORMATION -->
+
+    <div class="field">
+
+        <h3>
+            Teacher Name
+        </h3>
+
+        <p>
+            {{ lesson_plan.teacher_name }}
+        </p>
+
+    </div>
+
+
+    <div class="field">
+
+        <h3>
+            School Name
+        </h3>
+
+        <p>
+            {{ lesson_plan.school_name }}
+        </p>
+
+    </div>
+
+
+    <div class="field">
+
+        <h3>
+            Subject
+        </h3>
+
+        <p>
+            {{ lesson_plan.subject }}
+        </p>
+
+    </div>
+
+
+    <div class="field">
+
+        <h3>
+            Class
+        </h3>
+
+        <p>
+            {{ lesson_plan.class_name }}
+        </p>
+
+    </div>
+
+
+    <div class="field">
+
+        <h3>
+            Date
+        </h3>
+
+        <p>
+            {{ lesson_plan.date }}
+        </p>
+
+    </div>
+
+
+    <!-- COMPETENCE -->
+
+    <div class="field">
+
+        <h3>
+            Main Competence
+        </h3>
+
+        <p>
+            {{ lesson_plan.main_competence }}
+        </p>
+
+    </div>
+
+
+    <div class="field">
+
+        <h3>
+            Specific Competence
+        </h3>
+
+        <p>
+            {{ lesson_plan.specific_competence }}
+        </p>
+
+    </div>
+
+
+    <!-- ATTENDANCE -->
+
+    <div class="attendance-section">
+
+
+        <h2 class="attendance-title">
+
+            👨‍🎓 Student Attendance
+
+        </h2>
+
+
+        <div class="attendance-grid">
+
+
+            <!-- TOTAL -->
+
+            <div class="attendance-card total-card">
+
+                <div class="number">
+
+                    {{ lesson_plan.total_students }}
+
+                </div>
+
+                <div class="label">
+
+                    Total Students
+
+                </div>
+
+            </div>
+
+
+            <!-- PRESENT -->
+
+            <div class="attendance-card present-card">
+
+                <div class="number">
+
+                    {{ lesson_plan.students_present }}
+
+                </div>
+
+                <div class="label">
+
+                    🟢 Students Present
+
+                </div>
+
+            </div>
+
+
+            <!-- ABSENT -->
+
+            <div class="attendance-card absent-card">
+
+                <div class="number">
+
+                    {{ lesson_plan.students_absent }}
+
+                </div>
+
+                <div class="label">
+
+                    🔴 Students Absent
+
+                </div>
+
+            </div>
+
+
+            <!-- PERCENTAGE -->
+
+            <div class="attendance-card percentage-card">
+
+                <div class="number" id="attendancePercentage">
+
+                    0%
+
+                </div>
+
+                <div class="label">
+
+                    📊 Attendance
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PROGRESS -->
+
+        <div class="progress-container">
+
+
+            <div class="progress-header">
+
+                <span>
+                    Attendance Rate
+                </span>
+
+                <span id="progressText">
+                    0%
+                </span>
+
+            </div>
+
+
+            <div class="progress-bar">
+
+                <div
+                    class="progress-fill"
+                    id="progressFill"
+                    style="width: 0%;">
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- LEARNING ACTIVITIES -->
+
+    <div class="field">
+
+        <h3>
+            Learning Activities
+        </h3>
+
+        <p>
+            {{ lesson_plan.learning_activities }}
+        </p>
+
+    </div>
+
+
+    <!-- TEACHING MATERIALS -->
+
+    <div class="field">
+
+        <h3>
+            Teaching Materials
+        </h3>
+
+        <p>
+            {{ lesson_plan.teaching_materials }}
+        </p>
+
+    </div>
+
+
+    <!-- ASSESSMENT -->
+
+    <div class="field">
+
+        <h3>
+            Assessment
+        </h3>
+
+        <p>
+            {{ lesson_plan.assessment }}
+        </p>
+
+    </div>
+
+
+    <!-- REFLECTION -->
+
+    <div class="field">
+
+        <h3>
+            Reflection
+        </h3>
+
+        <p>
+            {{ lesson_plan.reflection }}
+        </p>
+
+    </div>
+
+
+    <!-- REFERENCES -->
+
+    <div class="field">
+
+        <h3>
+            References
+        </h3>
+
+        <p>
+            {{ lesson_plan.references }}
+        </p>
+
+    </div>
+
+
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+
+        <a
+            href="{% url 'edit_lesson_plan' lesson_plan.pk %}"
+            class="btn btn-edit">
+
+            ✏️ Edit
+
+        </a>
+
+
+        <a
+            href="{% url 'delete_lesson_plan' lesson_plan.pk %}"
+            class="btn btn-delete">
+
+            🗑️ Delete
+
+        </a>
+
+
+        <button
+            onclick="window.print()"
+            class="btn btn-print">
+
+            🖨️ Print
+
+        </button>
+
+
+        <a
+            href="{% url 'lesson_plan_list' %}"
+            class="btn btn-back">
+
+            ← Back to Lesson Plans
+
+        </a>
+
+
+        <a
+            href="{% url 'home' %}"
+            class="btn btn-dashboard">
+
+            🏠 Dashboard
+
+        </a>
+
+
+    </div>
+
+
+</div>
+```
+
+</div>
+
+<script>
+
+
+    const totalStudents =
+        {{ lesson_plan.total_students|default:0 }};
+
+
+    const studentsPresent =
+        {{ lesson_plan.students_present|default:0 }};
+
+
+    let attendancePercentage = 0;
+
+
+    if (totalStudents > 0) {
+
+        attendancePercentage =
+            (studentsPresent / totalStudents) * 100;
+
+    }
+
+
+    attendancePercentage =
+        Math.min(
+            100,
+            Math.max(
+                0,
+                attendancePercentage
+            )
+        );
+
+
+    attendancePercentage =
+        Math.round(
+            attendancePercentage * 10
+        ) / 10;
+
+
+    document.getElementById(
+        "attendancePercentage"
+    ).textContent =
+        attendancePercentage + "%";
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        attendancePercentage + "%";
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        attendancePercentage + "%";
+
+
+</script>
+
+</body>
+
+</html>

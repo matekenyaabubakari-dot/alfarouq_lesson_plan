@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Settings - Alfarouq Lesson Plan System</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 240px;
+        height: 100vh;
+        background: #111827;
+        color: white;
+        padding: 25px 15px;
+    }
+
+    .logo {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .logo h2 {
+        margin: 0;
+        color: #60a5fa;
+    }
+
+    .logo p {
+        font-size: 13px;
+        color: #d1d5db;
+    }
+
+    .menu a {
+        display: block;
+        color: white;
+        text-decoration: none;
+        padding: 14px;
+        margin-bottom: 8px;
+        border-radius: 7px;
+    }
+
+    .menu a:hover {
+        background: #2563eb;
+    }
+
+    .main {
+        margin-left: 240px;
+        padding: 35px;
+    }
+
+    .box {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        max-width: 700px;
+    }
+
+    .setting {
+        padding: 18px;
+        margin: 12px 0;
+        background: #f3f4f6;
+        border-radius: 7px;
+    }
+
+    .back {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 12px 20px;
+        background: #2563eb;
+        color: white;
+        text-decoration: none;
+        border-radius: 7px;
+    }
+
+    @media (max-width: 600px) {
+        .sidebar {
+            display: none;
+        }
+
+        .main {
+            margin-left: 0;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+```
+<div class="sidebar">
+
+    <div class="logo">
+        <h2>ALFAROUQ</h2>
+        <p>Lesson Plan System</p>
+    </div>
+
+    <div class="menu">
+
+        <a href="{% url 'home' %}">
+            🏠 Dashboard
+        </a>
+
+        <a href="{% url 'create_lesson_plan' %}">
+            📝 Create Lesson Plan
+        </a>
+
+        <a href="{% url 'lesson_plan_list' %}">
+            📚 My Lesson Plans
+        </a>
+
+        <a href="{% url 'reports' %}">
+            📊 Reports
+        </a>
+
+        <a href="{% url 'profile' %}">
+            👤 Profile
+        </a>
+
+        <a href="{% url 'settings' %}">
+            ⚙️ Settings
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="main">
+
+    <div class="box">
+
+        <h1>⚙️ Settings</h1>
+
+        <p>
+            Manage your Lesson Plan System settings.
+        </p>
+
+        <div class="setting">
+            <strong>Language</strong>
+            <br>
+            English
+        </div>
+
+        <div class="setting">
+            <strong>System</strong>
+            <br>
+            Alfarouq Lesson Plan System
+        </div>
+
+        <div class="setting">
+            <strong>Theme</strong>
+            <br>
+            Default
+        </div>
+
+        <a href="{% url 'home' %}" class="back">
+            🏠 Back to Dashboard
+        </a>
+
+    </div>
+
+</div>
+```
+
+</body>
+</html>

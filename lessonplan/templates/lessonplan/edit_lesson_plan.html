@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Edit Lesson Plan - Alfarouq</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        color: #111827;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 35px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .header {
+        margin-bottom: 30px;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 20px;
+    }
+
+    .header h1 {
+        margin: 0 0 8px;
+        color: #2563eb;
+    }
+
+    .header p {
+        margin: 0;
+        color: #6b7280;
+    }
+
+    .section-title {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 12px 15px;
+        background: #eff6ff;
+        border-left: 5px solid #2563eb;
+        color: #1e40af;
+        border-radius: 6px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 7px;
+        color: #374151;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+
+    textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .required {
+        color: #dc2626;
+    }
+
+    /* ATTENDANCE */
+
+    .attendance {
+        background: #f8fafc;
+        padding: 25px;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 25px;
+    }
+
+    .attendance-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .attendance-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        border: 1px solid #e5e7eb;
+    }
+
+    .attendance-card label {
+        font-size: 14px;
+    }
+
+    .attendance-card input {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .present input {
+        border-color: #16a34a;
+    }
+
+    .absent input {
+        border-color: #dc2626;
+        background: #fef2f2;
+    }
+
+    .total input {
+        border-color: #2563eb;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .btn {
+        padding: 13px 22px;
+        border: none;
+        border-radius: 7px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn-update {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-cancel {
+        background: #6b7280;
+        color: white;
+    }
+
+    .btn-dashboard {
+        background: #111827;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    .info {
+        background: #eff6ff;
+        color: #1e40af;
+        padding: 12px;
+        border-radius: 7px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+
+        .form-row,
+        .attendance-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .card {
+            padding: 20px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<div class="card">
+
+    <div class="header">
+
+        <h1>✏️ Edit Lesson Plan</h1>
+
+        <p>
+            Update the information below and save your changes.
+        </p>
+
+    </div>
+
+    <div class="info">
+        Edit your lesson plan information and student attendance below.
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <!-- BASIC INFORMATION -->
+
+        <h2 class="section-title">
+            📋 Basic Information
+        </h2>
+
+        <div class="form-row">
+
+            <div class="form-group">
+
+                <label for="teacher_name">
+                    Teacher Name <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="teacher_name"
+                    name="teacher_name"
+                    value="{{ lesson_plan.teacher_name }}"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="school_name">
+                    School Name <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="school_name"
+                    name="school_name"
+                    value="{{ lesson_plan.school_name }}"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="subject">
+                    Subject <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value="{{ lesson_plan.subject }}"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="class_name">
+                    Class <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="class_name"
+                    name="class_name"
+                    value="{{ lesson_plan.class_name }}"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="date">
+                    Date <span class="required">*</span>
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value="{{ lesson_plan.date|date:'Y-m-d' }}"
+                    required>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMPETENCE -->
+
+        <h2 class="section-title">
+            🎯 Competence
+        </h2>
+
+        <div class="form-group">
+
+            <label for="main_competence">
+                Main Competence <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="main_competence"
+                name="main_competence"
+                required>{{ lesson_plan.main_competence }}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="specific_competence">
+                Specific Competence <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="specific_competence"
+                name="specific_competence"
+                required>{{ lesson_plan.specific_competence }}</textarea>
+
+        </div>
+
+
+        <!-- STUDENT ATTENDANCE -->
+
+        <h2 class="section-title">
+            👨‍🎓 Student Attendance
+        </h2>
+
+        <div class="attendance">
+
+            <div class="attendance-grid">
+
+
+                <!-- TOTAL -->
+
+                <div class="attendance-card total">
+
+                    <label for="total_students">
+                        Total Students
+                    </label>
+
+                    <input
+                        type="number"
+                        id="total_students"
+                        name="total_students"
+                        min="0"
+                        value="{{ lesson_plan.total_students }}"
+                        required>
+
+                </div>
+
+
+                <!-- PRESENT -->
+
+                <div class="attendance-card present">
+
+                    <label for="students_present">
+                        🟢 Students Present
+                    </label>
+
+                    <input
+                        type="number"
+                        id="students_present"
+                        name="students_present"
+                        min="0"
+                        value="{{ lesson_plan.students_present }}"
+                        required>
+
+                </div>
+
+
+                <!-- ABSENT -->
+
+                <div class="attendance-card absent">
+
+                    <label for="students_absent">
+                        🔴 Students Absent
+                    </label>
+
+                    <input
+                        type="number"
+                        id="students_absent"
+                        name="students_absent"
+                        min="0"
+                        value="{{ lesson_plan.students_absent }}"
+                        readonly>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TEACHING AND LEARNING -->
+
+        <h2 class="section-title">
+            📚 Teaching and Learning
+        </h2>
+
+
+        <div class="form-group">
+
+            <label for="learning_activities">
+                Learning Activities <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="learning_activities"
+                name="learning_activities"
+                required>{{ lesson_plan.learning_activities }}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="teaching_materials">
+                Teaching Materials <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="teaching_materials"
+                name="teaching_materials"
+                required>{{ lesson_plan.teaching_materials }}</textarea>
+
+        </div>
+
+
+        <!-- ASSESSMENT -->
+
+        <h2 class="section-title">
+            ✅ Assessment and Reflection
+        </h2>
+
+
+        <div class="form-group">
+
+            <label for="assessment">
+                Assessment <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="assessment"
+                name="assessment"
+                required>{{ lesson_plan.assessment }}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="reflection">
+                Reflection
+            </label>
+
+            <textarea
+                id="reflection"
+                name="reflection">{{ lesson_plan.reflection }}</textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="references">
+                References
+            </label>
+
+            <textarea
+                id="references"
+                name="references">{{ lesson_plan.references }}</textarea>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+            <button
+                type="submit"
+                class="btn btn-update">
+                💾 Update Lesson Plan
+            </button>
+
+
+            <a
+                href="{% url 'lesson_plan_detail' lesson_plan.pk %}"
+                class="btn btn-cancel">
+                ← Cancel
+            </a>
+
+
+            <a
+                href="{% url 'home' %}"
+                class="btn btn-dashboard">
+                🏠 Dashboard
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<script>
+
+    const totalStudents =
+        document.getElementById("total_students");
+
+    const studentsPresent =
+        document.getElementById("students_present");
+
+    const studentsAbsent =
+        document.getElementById("students_absent");
+
+
+    function calculateAbsent() {
+
+        let total =
+            parseInt(totalStudents.value) || 0;
+
+        let present =
+            parseInt(studentsPresent.value) || 0;
+
+
+        if (total < 0) {
+            total = 0;
+            totalStudents.value = 0;
+        }
+
+
+        if (present < 0) {
+            present = 0;
+            studentsPresent.value = 0;
+        }
+
+
+        if (present > total) {
+
+            present = total;
+
+            studentsPresent.value = total;
+
+        }
+
+
+        studentsAbsent.value =
+            Math.max(0, total - present);
+
+    }
+
+
+    totalStudents.addEventListener(
+        "input",
+        calculateAbsent
+    );
+
+
+    studentsPresent.addEventListener(
+        "input",
+        calculateAbsent
+    );
+
+
+    /* Calculate immediately when page opens */
+
+    calculateAbsent();
+
+</script>
+
+</body>
+
+</html>

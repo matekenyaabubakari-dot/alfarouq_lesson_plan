@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+```
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Delete Lesson Plan - Alfarouq</title>
+
+<style>
+
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        color: #111827;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 80px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    .icon {
+        font-size: 55px;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        color: #dc2626;
+        margin-bottom: 15px;
+    }
+
+    .message {
+        color: #4b5563;
+        line-height: 1.6;
+        margin-bottom: 25px;
+    }
+
+    .lesson-info {
+        background: #f3f4f6;
+        padding: 18px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .lesson-info p {
+        margin: 8px 0;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 12px 22px;
+        border: none;
+        border-radius: 7px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn-delete {
+        background: #dc2626;
+        color: white;
+    }
+
+    .btn-cancel {
+        background: #6b7280;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    form {
+        margin: 0;
+    }
+
+    @media (max-width: 600px) {
+
+        .container {
+            margin: 30px auto;
+        }
+
+        .card {
+            padding: 25px;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<div class="card">
+
+    <div class="icon">
+        ⚠️
+    </div>
+
+    <h1>Delete Lesson Plan?</h1>
+
+    <div class="message">
+        <p>
+            Are you sure you want to delete this lesson plan?
+        </p>
+
+        <p>
+            This action cannot be undone.
+        </p>
+    </div>
+
+
+    <div class="lesson-info">
+
+        <p>
+            <strong>Teacher:</strong>
+            {{ lesson_plan.teacher_name }}
+        </p>
+
+        <p>
+            <strong>School:</strong>
+            {{ lesson_plan.school_name }}
+        </p>
+
+        <p>
+            <strong>Subject:</strong>
+            {{ lesson_plan.subject }}
+        </p>
+
+        <p>
+            <strong>Class:</strong>
+            {{ lesson_plan.class_name }}
+        </p>
+
+        <p>
+            <strong>Date:</strong>
+            {{ lesson_plan.date }}
+        </p>
+
+    </div>
+
+
+    <div class="buttons">
+
+        <form
+            method="POST"
+            action="{% url 'delete_lesson_plan' lesson_plan.pk %}">
+
+            {% csrf_token %}
+
+            <button
+                type="submit"
+                class="btn btn-delete">
+                🗑 Yes, Delete
+            </button>
+
+        </form>
+
+
+        <a
+            href="{% url 'lesson_plan_detail' lesson_plan.pk %}"
+            class="btn btn-cancel">
+            ← Cancel
+        </a>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+</body>
+
+</html>

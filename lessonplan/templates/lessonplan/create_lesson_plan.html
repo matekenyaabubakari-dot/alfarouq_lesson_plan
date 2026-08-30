@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>Create Lesson Plan - Alfarouq</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f4f6f9;
+        color: #111827;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background: white;
+        padding: 35px;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    .header {
+        margin-bottom: 30px;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 20px;
+    }
+
+    .header h1 {
+        margin: 0 0 8px;
+        color: #2563eb;
+    }
+
+    .header p {
+        margin: 0;
+        color: #6b7280;
+    }
+
+    .section-title {
+        margin-top: 30px;
+        margin-bottom: 20px;
+        padding: 12px 15px;
+        background: #eff6ff;
+        border-left: 5px solid #2563eb;
+        color: #1e40af;
+        border-radius: 6px;
+    }
+
+    .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 7px;
+        color: #374151;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #d1d5db;
+        border-radius: 7px;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+
+    input:focus,
+    textarea:focus {
+        outline: none;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+
+    textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    .required {
+        color: #dc2626;
+    }
+
+    .attendance {
+        background: #f8fafc;
+        padding: 25px;
+        border-radius: 10px;
+        border: 1px solid #e5e7eb;
+        margin-bottom: 25px;
+    }
+
+    .attendance-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .attendance-card {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        border: 1px solid #e5e7eb;
+    }
+
+    .attendance-card label {
+        font-size: 14px;
+    }
+
+    .attendance-card input {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .present input {
+        border-color: #16a34a;
+    }
+
+    .absent input {
+        border-color: #dc2626;
+    }
+
+    .total input {
+        border-color: #2563eb;
+    }
+
+    .buttons {
+        display: flex;
+        gap: 12px;
+        margin-top: 30px;
+        padding-top: 25px;
+        border-top: 1px solid #e5e7eb;
+    }
+
+    .btn {
+        padding: 13px 22px;
+        border: none;
+        border-radius: 7px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .btn-save {
+        background: #2563eb;
+        color: white;
+    }
+
+    .btn-cancel {
+        background: #6b7280;
+        color: white;
+    }
+
+    .btn-dashboard {
+        background: #111827;
+        color: white;
+    }
+
+    .btn:hover {
+        opacity: 0.85;
+    }
+
+    .messages {
+        margin-bottom: 20px;
+    }
+
+    .message {
+        background: #dcfce7;
+        color: #166534;
+        padding: 13px;
+        border-radius: 7px;
+    }
+
+    .info {
+        background: #eff6ff;
+        color: #1e40af;
+        padding: 12px;
+        border-radius: 7px;
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 700px) {
+        .form-row,
+        .attendance-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        .card {
+            padding: 20px;
+        }
+    }
+</style>
+```
+
+</head>
+
+<body>
+
+<div class="container">
+
+```
+<div class="card">
+
+    <div class="header">
+        <h1>📝 Create Lesson Plan</h1>
+        <p>Create a new professional lesson plan.</p>
+    </div>
+
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="info">
+        Fill in all the required information below to create your lesson plan.
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <h2 class="section-title">📋 Basic Information</h2>
+
+        <div class="form-row">
+
+            <div class="form-group">
+                <label for="teacher_name">
+                    Teacher Name <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="teacher_name"
+                    name="teacher_name"
+                    placeholder="Enter teacher name"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="school_name">
+                    School Name <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="school_name"
+                    name="school_name"
+                    placeholder="Enter school name"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="subject">
+                    Subject <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    placeholder="e.g. Mathematics"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="class_name">
+                    Class <span class="required">*</span>
+                </label>
+
+                <input
+                    type="text"
+                    id="class_name"
+                    name="class_name"
+                    placeholder="e.g. Form One"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="date">
+                    Date <span class="required">*</span>
+                </label>
+
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    required>
+            </div>
+
+        </div>
+
+
+        <h2 class="section-title">🎯 Competence</h2>
+
+        <div class="form-group">
+            <label for="main_competence">
+                Main Competence <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="main_competence"
+                name="main_competence"
+                placeholder="Enter the main competence..."
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="specific_competence">
+                Specific Competence <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="specific_competence"
+                name="specific_competence"
+                placeholder="Enter the specific competence..."
+                required></textarea>
+        </div>
+
+
+        <h2 class="section-title">👨‍🎓 Student Attendance</h2>
+
+        <div class="attendance">
+
+            <div class="attendance-grid">
+
+                <div class="attendance-card total">
+                    <label for="total_students">
+                        Total Students
+                    </label>
+
+                    <input
+                        type="number"
+                        id="total_students"
+                        name="total_students"
+                        min="0"
+                        value="0"
+                        required>
+                </div>
+
+                <div class="attendance-card present">
+                    <label for="students_present">
+                        🟢 Students Present
+                    </label>
+
+                    <input
+                        type="number"
+                        id="students_present"
+                        name="students_present"
+                        min="0"
+                        value="0"
+                        required>
+                </div>
+
+                <div class="attendance-card absent">
+                    <label for="students_absent">
+                        🔴 Students Absent
+                    </label>
+
+                    <input
+                        type="number"
+                        id="students_absent"
+                        name="students_absent"
+                        min="0"
+                        value="0"
+                        readonly>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <h2 class="section-title">📚 Teaching and Learning</h2>
+
+        <div class="form-group">
+            <label for="learning_activities">
+                Learning Activities <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="learning_activities"
+                name="learning_activities"
+                placeholder="Describe the learning activities..."
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="teaching_materials">
+                Teaching Materials <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="teaching_materials"
+                name="teaching_materials"
+                placeholder="Enter teaching materials..."
+                required></textarea>
+        </div>
+
+
+        <h2 class="section-title">✅ Assessment and Reflection</h2>
+
+        <div class="form-group">
+            <label for="assessment">
+                Assessment <span class="required">*</span>
+            </label>
+
+            <textarea
+                id="assessment"
+                name="assessment"
+                placeholder="Describe assessment methods..."
+                required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="reflection">
+                Reflection
+            </label>
+
+            <textarea
+                id="reflection"
+                name="reflection"
+                placeholder="Enter reflection..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="references">
+                References
+            </label>
+
+            <textarea
+                id="references"
+                name="references"
+                placeholder="Enter references..."></textarea>
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                type="submit"
+                class="btn btn-save">
+                💾 Save Lesson Plan
+            </button>
+
+            <a
+                href="{% url 'lesson_plan_list' %}"
+                class="btn btn-cancel">
+                Cancel
+            </a>
+
+            <a
+                href="{% url 'home' %}"
+                class="btn btn-dashboard">
+                🏠 Dashboard
+            </a>
+
+        </div>
+
+    </form>
+
+</div>
+```
+
+</div>
+
+<script>
+
+    const totalStudents = document.getElementById("total_students");
+    const studentsPresent = document.getElementById("students_present");
+    const studentsAbsent = document.getElementById("students_absent");
+
+    function calculateAbsent() {
+
+        const total = parseInt(totalStudents.value) || 0;
+        const present = parseInt(studentsPresent.value) || 0;
+
+        if (present > total) {
+            studentsPresent.value = total;
+        }
+
+        studentsAbsent.value =
+            Math.max(0, total - (parseInt(studentsPresent.value) || 0));
+    }
+
+    totalStudents.addEventListener("input", calculateAbsent);
+    studentsPresent.addEventListener("input", calculateAbsent);
+
+</script>
+
+</body>
+</html>

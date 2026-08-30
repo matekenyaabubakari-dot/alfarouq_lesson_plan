@@ -1,1 +1,87 @@
-[{"model": "lessonplan.lessonplan", "pk": 4, "fields": {"teacher_name": "abubakari", "school_name": "alfarouq", "subject": "mathematics", "class_name": "form6", "date": "2026-08-16", "main_competence": "vector analysis", "specific_competence": "understanding", "learning_activities": "meaning of vector", "teaching_materials": "tie", "assessment": "classactivity", "reflection": "activity", "references": "tie,chand", "total_students": 100, "students_present": 80, "students_absent": 20, "created_at": "2026-08-29T22:02:09.636Z", "updated_at": "2026-08-29T22:57:58.279Z"}}, {"model": "lessonplan.lessonplan", "pk": 5, "fields": {"teacher_name": "f", "school_name": "rg", "subject": "gf5", "class_name": "5", "date": "2026-08-12", "main_competence": "ryd", "specific_competence": "ytrd", "learning_activities": "g", "teaching_materials": "hrd", "assessment": "gd", "reflection": "ged", "references": "dgx", "total_students": 20, "students_present": 5, "students_absent": 15, "created_at": "2026-08-29T22:18:24.925Z", "updated_at": "2026-08-29T22:18:24.925Z"}}, {"model": "lessonplan.lessonplan", "pk": 6, "fields": {"teacher_name": "c", "school_name": "c", "subject": "cf", "class_name": "cf", "date": "2026-08-06", "main_competence": "cf", "specific_competence": "fc", "learning_activities": "c", "teaching_materials": "c", "assessment": "c", "reflection": "c", "references": "c", "total_students": 350, "students_present": 154, "students_absent": 196, "created_at": "2026-08-29T22:40:34.822Z", "updated_at": "2026-08-29T22:50:22.751Z"}}, {"model": "lessonplan.teacherprofile", "pk": 1, "fields": {"full_name": "ABUBAKARI MATEKENYA", "school_name": "alfarouq", "subjects": "mathematics", "qualification": "bachelor", "phone": "0616674177", "email": "matekenyaabubakari@gmail.com", "teacher_id": "1234", "bio": "vhfhbvjkwhajfJJDWHHFKJNJKWn", "created_at": "2026-08-29T23:24:09.453Z", "updated_at": "2026-08-29T23:51:52.561Z"}}]
+[
+{
+  "model": "lessonplan.lessonplan",
+  "pk": 4,
+  "fields": {
+    "teacher_name": "abubakari",
+    "school_name": "alfarouq",
+    "subject": "mathematics",
+    "class_name": "form6",
+    "date": "2026-08-16",
+    "main_competence": "vector analysis",
+    "specific_competence": "understanding",
+    "learning_activities": "meaning of vector",
+    "teaching_materials": "tie",
+    "assessment": "classactivity",
+    "reflection": "activity",
+    "references": "tie,chand",
+    "total_students": 100,
+    "students_present": 80,
+    "students_absent": 20,
+    "created_at": "2026-08-29T22:02:09.636Z",
+    "updated_at": "2026-08-29T22:57:58.279Z"
+  }
+},
+{
+  "model": "lessonplan.lessonplan",
+  "pk": 5,
+  "fields": {
+    "teacher_name": "f",
+    "school_name": "rg",
+    "subject": "gf5",
+    "class_name": "5",
+    "date": "2026-08-12",
+    "main_competence": "ryd",
+    "specific_competence": "ytrd",
+    "learning_activities": "g",
+    "teaching_materials": "hrd",
+    "assessment": "gd",
+    "reflection": "ged",
+    "references": "dgx",
+    "total_students": 20,
+    "students_present": 5,
+    "students_absent": 15,
+    "created_at": "2026-08-29T22:18:24.925Z",
+    "updated_at": "2026-08-29T22:18:24.925Z"
+  }
+},
+{
+  "model": "lessonplan.lessonplan",
+  "pk": 6,
+  "fields": {
+    "teacher_name": "c",
+    "school_name": "c",
+    "subject": "cf",
+    "class_name": "cf",
+    "date": "2026-08-06",
+    "main_competence": "cf",
+    "specific_competence": "fc",
+    "learning_activities": "c",
+    "teaching_materials": "c",
+    "assessment": "c",
+    "reflection": "c",
+    "references": "c",
+    "total_students": 350,
+    "students_present": 154,
+    "students_absent": 196,
+    "created_at": "2026-08-29T22:40:34.822Z",
+    "updated_at": "2026-08-29T22:50:22.751Z"
+  }
+},
+{
+  "model": "lessonplan.teacherprofile",
+  "pk": 1,
+  "fields": {
+    "full_name": "ABUBAKARI MATEKENYA",
+    "school_name": "alfarouq",
+    "subjects": "mathematics",
+    "qualification": "bachelor",
+    "phone": "0616674177",
+    "email": "matekenyaabubakari@gmail.com",
+    "teacher_id": "1234",
+    "bio": "vhfhbvjkwhajfJJDWHHFKJNJKWn",
+    "created_at": "2026-08-29T23:24:09.453Z",
+    "updated_at": "2026-08-29T23:51:52.561Z"
+  }
+}
+]
